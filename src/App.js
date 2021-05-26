@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import BooksContainer from './components/BooksContainer';
+import Header from './components/Header';
+import DetailPanel from './components/DetailPanel';
+import {GlobalStyle} from './styles';
 
 const App = () => {
   const [books, setBooks] = useState([]);
-
-  console.log('this message is going to load every time the component renders.');
+  const [selectedBook, setSelectedBook] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,11 +23,20 @@ const App = () => {
     fetchData();
   }, []);
 
-  console.log(`the books array in our state`, books);
+  const pickBook = (book) => {
+    setSelectedBook(book);
+  };
+
+  const closePanel = (book) => {
+    setSelectedBook(null);
+  };
 
   return (
     <>
-      <BooksContainer books={books} />
+      <GlobalStyle />
+      <Header />
+      <BooksContainer books={books} pickBook={pickBook} isPanelOpen={selectedBook !== null} />
+      {selectedBook && <DetailPanel book={selectedBook} closePanel={closePanel} />}
     </>
   );
 };
