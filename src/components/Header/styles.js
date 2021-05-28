@@ -14,15 +14,17 @@ export const Logo = styled(LogoSVG)`
 
 export const HeaderContainer = styled.header`
   background: #ffbccc;
-  border-bottom: 2px solid #000;
   padding: 20px 40px;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: space-between;
+  border-bottom: 2px solid black;
+  position: fixed;
+  z-index: 2;
   width: 100vw;
   display: flex;
-  position: flex;
-  z-index: 3;
+  box-sizing: border-box;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
 
   @media (max-width: 800px) {
     padding: 20px;
